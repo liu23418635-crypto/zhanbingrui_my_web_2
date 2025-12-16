@@ -12,7 +12,7 @@ body {
   background-size: cover;
   overflow: hidden;
   backdrop-filter: blur(5px);
-  background-image: url("./../img/bg0.png");
+  background-image: url("./../img/bg_0.png");
 }
 #blur-bg {
   position: fixed;
@@ -68,8 +68,6 @@ body {
   width: 100%;
   height: 100%;
   border-radius: 50%;
-  /* 黑胶纹理图 */
-  background: url("./../img/vinyl-texture.png") center/cover;
   background-color: #111;
   display: flex;
   justify-content: center;
@@ -82,10 +80,8 @@ body {
   width: 360px;
   height: 360px;
   border-radius: 50%;
-  /* 背景图由 JS 动态设置 */
-  background-image: url("./../img/record0.jpg");
+  background-image: url("./../img/record_0.jpg");
   background-size: 100% 100%;
-  /* 减小或移除边框，让封面更突出 */
   border: 3px solid #333;
 }
 
