@@ -8,6 +8,7 @@ const progressBar = document.getElementById('progressBar');
 const progressWrap = document.getElementById('progressWrap');
 const currentTimeEl = document.getElementById('currentTime');
 const volumnTogger = document.getElementById('volumn-togger');
+const volumnBtn = document.getElementById('volumn');
 const playModeBtn = document.getElementById('playMode');
 const listBtn = document.getElementById('list');
 const musicListEl = document.getElementById('musicList');
@@ -61,6 +62,10 @@ function initPage() {
     renderMusicList(); // 渲染播放列表
     loadMusic(currentIndex); // 加载默认歌曲
     bindEvents(); // 绑定所有事件
+    // 初始化音量显示
+    audioPlayer.volume = volumnTogger.value / 100;
+    isMuted = audioPlayer.volume === 0;
+    volumnBtn.style.backgroundImage = isMuted ? "url('./img/静音.png')" : "url('./img/音量.png')";
     injectRotateAnimation(); // 注入黑胶片旋转动画
 }
 
@@ -95,6 +100,8 @@ function loadMusic(index) {
 
     // 更新音频源
     audioPlayer.src = music.mp3;
+    // 确保浏览器加载新的元数据
+    audioPlayer.load();
     // 更新页面信息
     musicTitleEl.textContent = music.title;
     musicAuthorEl.textContent = music.author;
@@ -180,10 +187,15 @@ function toggleMute() {
 
 // 进度条跳转（满足实验要求：跳转到指定时间播放）
 function seekProgress(e) {
-    const clickX = e.offsetX;
-    const progressWidth = progressWrap.offsetWidth;
-    const seekRatio = clickX / progressWidth;
-    audioPlayer.currentTime = seekRatio * audioPlayer.duration;
+    const rect = progressWrap.getBoundingClientRect();
+    const clickX = e.clientX - rect.left;
+    const progressWidth = rect.width;
+    let seekRatio = clickX / progressWidth;
+    if (seekRatio < 0) seekRatio = 0;
+    if (seekRatio > 1) seekRatio = 1;
+    if (audioPlayer.duration && isFinite(audioPlayer.duration)) {
+        audioPlayer.currentTime = seekRatio * audioPlayer.duration;
+    }
     progressBar.style.width = `${seekRatio * 100}%`;
 }
 
@@ -256,9 +268,11 @@ function bindEvents() {
     speedEl.addEventListener('click', togglePlaySpeed);
     // 音频进度更新事件
     audioPlayer.addEventListener('timeupdate', () => {
-        const progressRatio = audioPlayer.currentTime / audioPlayer.duration;
-        progressBar.style.width = `${progressRatio * 100}%`;
-        // 更新当前时间显示
+        if (audioPlayer.duration && isFinite(audioPlayer.duration) && audioPlayer.duration > 0) {
+            const progressRatio = audioPlayer.currentTime / audioPlayer.duration;
+            progressBar.style.width = `${progressRatio * 100}%`;
+        }
+        // 更新当前时间显示（当前时间总是可用）
         const minutes = Math.floor(audioPlayer.currentTime / 60);
         const seconds = Math.floor(audioPlayer.currentTime % 60);
         currentTimeEl.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
