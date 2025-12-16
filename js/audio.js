@@ -49,6 +49,15 @@ const musicResources = [
         cover: "./img/record_2.jpg",
         bg: "./img/bg_2.jpg"
     },
+    {
+        id: 3,
+        title: "夜空ノ雪",
+        author: "雪姬",
+        mp3: "./mp3/music3.mp3",
+        mp4: "./mp4/video3.mp4",
+        cover: "./img/record3.jpg",
+        bg: "./img/bg3.png"
+    },
 ];
 
 // 全局状态
