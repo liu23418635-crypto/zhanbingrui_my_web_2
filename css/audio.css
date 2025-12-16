@@ -1,0 +1,251 @@
+body {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  background-color: #000;
+  overflow: hidden;
+}
+
+html,
+body {
+  height: 100%;
+  background-size: cover;
+  overflow: hidden;
+  backdrop-filter: blur(5px);
+  background-image: url("./../img/bg0.png");
+}
+#blur-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  filter: blur(5px); 
+  z-index: -1;
+  transition: background-image 0.5s ease; 
+}
+
+/* 上部容器： */
+.upper-container {
+  height: 90%;
+  padding: 0 10%;
+  display: flex;
+  align-items: center;
+  gap: 50px;
+}
+
+/* 方格边框容器 */
+.record-frame {
+  width: 500px;
+  height: 500px;
+  border: 2px solid rgba(255, 255, 255, 0.5); 
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  position: relative;
+  overflow: visible;
+}
+
+.record-frame::before {
+  display: none; 
+}
+
+
+/* 黑胶容器 */
+.record-container {
+  width: 480px;
+  height: 480px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.record-bg {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  /* 黑胶纹理图 */
+  background: url("./../img/vinyl-texture.png") center/cover;
+  background-color: #111;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+}
+
+/* 黑胶封面 */
+.record-img {
+  width: 360px;
+  height: 360px;
+  border-radius: 50%;
+  /* 背景图由 JS 动态设置 */
+  background-image: url("./../img/record0.jpg");
+  background-size: 100% 100%;
+  /* 减小或移除边框，让封面更突出 */
+  border: 3px solid #333;
+}
+
+/* 歌曲信息区域 */
+.introduction-container {
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.music-title {
+  font-size: 4rem;
+  margin: 0;
+}
+
+.author-container {
+  font-size: 2rem;
+  margin: 10px 0 0 0;
+  opacity: 0.8;
+}
+
+/* 下部容器 */
+.bottom-container {
+  height: 10%;
+  padding: 0 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* 进度条 */
+.progress {
+  width: 100%;
+  height: 3px;
+  background-color: rgba(255, 255, 255, 0.3);
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+.progress-bar {
+  height: 100%;
+  background-color: green;
+}
+
+/* 控制区布局 */
+.controls {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.left {
+  color: white;
+  font-weight: 300;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.center {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* 按钮样式 */
+.center-icon {
+  width: 28px;
+  height: 28px;
+  cursor: pointer;
+  background-size: 100% 100%;
+}
+
+.center-icon:hover {
+  opacity: 0.7;
+}
+
+#playMode {
+  background-image: url("./../img/mode1.png");
+}
+
+#before-music {
+  background-image: url("./../img/上一首.png");
+}
+
+#playPause {
+  width: 45px;
+  height: 45px;
+  background-image: url("./../img/继续播放.png");
+}
+
+#last-music {
+  background-image: url("./../img/下一首.png");
+}
+
+#volumn {
+  background-image: url("./../img/音量.png");
+}
+
+#volumn-togger {
+  width: 100px;
+  height: 8px;
+  appearance: none;
+  background-color: #dcdcdc;
+  border-radius: 15px;
+  outline: none;
+  overflow: hidden;
+  box-shadow: inset 0 0 5px rgb(91, 91, 91);
+  cursor: pointer;
+}
+
+#volumn-togger::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 1px;
+  height: 8px;
+  border-radius: 50%;
+  background: green;
+  border: 4px solid #fff;
+  cursor: pointer;
+  box-shadow: -407px 0 0 400px green;
+}
+
+.bottom-icon {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+  background-size: 100% 100%;
+}
+
+#MV {
+  background-image: url("./../img/MV.png");
+}
+
+#list {
+  background-image: url("./../img/列表.png");
+}
+
+#speed {
+  color: white;
+  cursor: pointer;
+}
+
+#speed:hover {
+  opacity: 0.7;
+}

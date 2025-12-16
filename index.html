@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>网易云风格音乐播放器</title>
+    <link rel="stylesheet" href="./css/audio.css">
+    <style>
+        .student-info {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 1rem;
+            opacity: 0.8;
+            z-index: 10;
+        }
+    </style>
+</head>
+<body>
+    <div class="student-info">学号：25216950234 | 姓名：詹炳锐</div>
+    <div id="blur-bg"></div>
+    <!-- 上部容器：方格+黑胶+歌曲信息 -->
+    <div class="upper-container">
+        <!-- 方格边框容器 -->
+        <div class="record-frame">
+            <div class="record-container">
+                <div class="record-bg">
+                    <div class="record-img" id="recordImg"></div>
+                </div>
+            </div>
+        </div>
+        <div class="introduction-container">
+            <div class="music-title" id="musicTitle">引Pluto&Charon</div>
+            <div class="author-container" id="musicAuthor">CORSAK胡梦周</div>
+        </div>
+    </div>
+
+    <!-- 下部容器：进度条+控制区 -->
+    <div class="bottom-container">
+        <div class="progress" id="progressWrap">
+            <div class="progress-bar" id="progressBar" style="width: 20%; height: 100%; background-color: green;"></div>
+        </div>
+        <div class="controls">
+            <div class="left" id="currentTime">00:00</div>
+            <div class="center">
+                <div class="center-icon" id="playMode" title="播放模式"></div>
+                <div class="center-icon" id="before-music" title="上一曲"></div>
+                <div class="center-icon" id="playPause" title="播放/暂停"></div>
+                <div class="center-icon" id="last-music" title="下一曲"></div>
+                <div class="center-icon" id="volumn" title="音量/静音"></div>
+                <input type="range" id="volumn-togger" min="0" max="100" value="80">
+            </div>
+            <div class="right">
+                <div class="bottom-icon" id="MV" title="播放MV"></div>
+                <div class="bottom-icon" id="list" title="显示/隐藏播放列表"></div>
+                <div id="speed" title="调整播放速度">1.0x</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 播放列表弹窗 -->
+    <div id="musicList" style="display: none; position: fixed; bottom: 120px; right: 30px; width: 300px; background: rgba(0,0,0,0.8); color: white; padding: 20px; border-radius: 10px; z-index: 20;">
+        <h3 style="margin: 0 0 15px 0; border-bottom: 1px solid rgba(255,255,255,0.3); padding-bottom: 8px;">播放列表</h3>
+        <ul id="listContainer" style="list-style: none; padding: 0; margin: 0; max-height: 300px; overflow-y: auto;"></ul>
+    </div>
+
+    <audio id="audioPlayer" preload="metadata">
+        <source src="" type="audio/mpeg">
+        您的浏览器不支持HTML5音频播放，请升级浏览器！
+    </audio>
+
+    <div id="mvPlayer" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 100; background: black; padding: 10px; border-radius: 5px;">
+        <video id="videoPlayer" width="800" height="450" controls>
+            <source src="" type="video/mp4">
+            您的浏览器不支持HTML5视频播放，请升级浏览器！
+        </video>
+        <button id="closeMv" style="position: absolute; top: 15px; right: 15px; background: red; color: white; border: none; padding: 5px 10px; border-radius: 3px; cursor: pointer;">关闭</button>
+    </div>
+
+    <script src="./js/audio.js"></script>
+</body>
+</html>
